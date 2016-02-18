@@ -1,0 +1,14 @@
+logging.level:
+  com.podbox: INFO
+  org.apache: WARN
+  org.apache.coyote: INFO
+  org.apache.catalina.core.AprLifecycleListener: INFO
+  org.springframework: WARN
+  org.thymeleaf: DEBUG
+
+spring:
+  profiles.active: local,dev
+  main.banner-mode: "off"
+  output.ansi.enabled: always
+
+  thymeleaf.prefix: classpath:/static/

@@ -1,0 +1,45 @@
+task wrapper(type: Wrapper) { gradleVersion = '2.11' }
+
+buildscript {
+    repositories {
+        jcenter()
+        maven { url 'http://repo.spring.io/plugins-release' }
+        maven { url 'https://s3.amazonaws.com/podbox-repository/public' }
+    }
+    dependencies {
+        classpath "io.spring.gradle:dependency-management-plugin:$dependencyPluginVersion"
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
+        classpath "com.podbox:usemin-maven-plugin:$useminPluginVersion"
+    }
+}
+
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'spring-boot'
+
+repositories { jcenter() }
+
+dependencyManagement {
+    imports {
+        mavenBom "io.spring.platform:platform-bom:$springPlatformVersion"
+    }
+}
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+    compile 'org.springframework.boot:spring-boot-devtools'
+
+    runtime 'org.glassfish.main.external:jmxremote_optional-repackaged:4.1.1'
+}
+
+task usemin(dependsOn: processResources, type: com.podbox.UseMinTask) {
+    sourceDirectory = file("src/main/resources/static/")
+    targetDirectory = file("$buildDir/resources/main/static/")
+    sources = ['index.html']
+}
+task jar.dependsOn(usemin)
+
+bootRepackage {
+    excludeDevtools = true
+}
