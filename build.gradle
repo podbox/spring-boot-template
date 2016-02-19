@@ -3,7 +3,6 @@ task wrapper(type: Wrapper) { gradleVersion = '2.11' }
 buildscript {
     repositories {
         jcenter()
-        maven { url 'http://repo.spring.io/plugins-release' }
         maven { url 'https://s3.amazonaws.com/podbox-repository/public' }
     }
     dependencies {

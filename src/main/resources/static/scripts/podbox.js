@@ -1,1 +1,1 @@
-var toto = "Yeah baby!";
+var toto = "Test";

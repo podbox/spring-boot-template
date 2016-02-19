@@ -4,7 +4,6 @@ logging.level:
   org.apache.coyote: INFO
   org.apache.catalina.core.AprLifecycleListener: INFO
   org.springframework: WARN
-  org.thymeleaf: DEBUG
 
 spring:
   profiles.active: local,dev
@@ -12,3 +11,7 @@ spring:
   output.ansi.enabled: always
 
   thymeleaf.prefix: classpath:/static/
+
+server.tomcat:
+  remote-ip-header: x-forwarded-for
+  protocol-header: x-forwarded-proto
