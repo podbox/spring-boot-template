@@ -2,7 +2,7 @@ logging.level:
   com.podbox: DEBUG
   org.apache: WARN
   org.apache.coyote: INFO
-  org.apache.catalina.core.AprLifecycleListener: INFO
+  org.apache.catalina: INFO
   org.springframework: WARN
 
 spring:

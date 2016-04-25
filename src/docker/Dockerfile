@@ -1,7 +1,10 @@
-FROM podbox/java8
+FROM podbox/openjdk8
 
 WORKDIR /libs/
 EXPOSE 8080 9875
+
+RUN useradd podbox
+USER podbox
 
 CMD java                        \
   -Xmx64m                       \

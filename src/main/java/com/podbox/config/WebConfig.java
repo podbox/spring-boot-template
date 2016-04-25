@@ -1,6 +1,7 @@
 package com.podbox.config;
 
 import org.apache.catalina.core.AprLifecycleListener;
+import org.apache.catalina.startup.VersionLoggerListener;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
 import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
 import org.springframework.context.annotation.Bean;
@@ -28,6 +29,7 @@ class WebConfig extends WebMvcConfigurerAdapter {
         return container -> {
             final TomcatEmbeddedServletContainerFactory tomcatContainer = (TomcatEmbeddedServletContainerFactory) container;
             tomcatContainer.addContextLifecycleListeners(aprLifecycleListener);
+            tomcatContainer.addContextLifecycleListeners(new VersionLoggerListener());
             tomcatContainer.setProtocol("HTTP/1.1");
         };
     }
