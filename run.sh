@@ -1,4 +1,5 @@
 #!/bin/sh
+docker rm -f podbox-template
 set -e
 
 ./gradlew clean build
